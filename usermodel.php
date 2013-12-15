@@ -23,16 +23,18 @@ class User {
 		return $this->email;
 	}
 	
+	//takes attributes and values, either as arrays or as strings. Sets class attributes.
 	public function setUserAttributes($attr, $value) {
-		if (is_string($attr) && is_string($value) {
+		if (is_string($attr) && is_string($value)) { //if the method is passed individual attribute/value as string
 			$this->$attr = $value;
-		} elseif (is_array($attr) && is_array($value)) {
+		} elseif (is_array($attr) && is_array($value)) { //if method is passed an array
 			foreach ($attr as $i => $x) {
 				$this->$x = $value[$i];
 			}
 		}
-		
 	}
+		
+		
 	
 	//check to see if username already exists in database; returns TRUE if username is AVAILABLE
 	public static function isUsernameAvailable($un){ 
