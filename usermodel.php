@@ -11,6 +11,9 @@ class User {
 	private $lastname;
 	private $email;
 	
+	public function getUsername() {
+		return $this->username;
+	}
 	public function getFirstName() {
 		return $this->firstname;
 	}
@@ -123,12 +126,12 @@ class User {
 	public function setUserAttributes($attr, $value) {
 		if (is_string($attr) && is_string($value)) { //if the method is passed individual attribute/value as string
 			$this->$attr = $value;
-		} elseif (is_array($attr) && is_array($value) && count($attr) == count($value) { //if method is passed two matching arrays
+		} elseif (is_array($attr) && is_array($value) && count($attr) == count($value)) { //if method is passed two matching arrays
 			foreach ($attr as $i => $x) {
 				$this->$x = $value[$i];
 			}
 		} else {
-			error_log("Error: arguments for setUserAttributes must be two strings or two matching arrays.")
+			error_log("Error: arguments for setUserAttributes must be two strings or two matching arrays.");
 		}
 	}
 }
