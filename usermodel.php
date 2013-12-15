@@ -21,20 +21,7 @@ class User {
 	
 	public function getEmail() {
 		return $this->email;
-	}
-	
-	//takes attributes and values, either as arrays or as strings. Sets class attributes.
-	public function setUserAttributes($attr, $value) {
-		if (is_string($attr) && is_string($value)) { //if the method is passed individual attribute/value as string
-			$this->$attr = $value;
-		} elseif (is_array($attr) && is_array($value)) { //if method is passed an array
-			foreach ($attr as $i => $x) {
-				$this->$x = $value[$i];
-			}
-		}
-	}
-		
-		
+	}	
 	
 	//check to see if username already exists in database; returns TRUE if username is AVAILABLE
 	public static function isUsernameAvailable($un){ 
@@ -129,6 +116,19 @@ class User {
 		}
 		} else {
 			print "Username is taken.";
+		}
+	}
+	
+	//takes attributes and values, either as two matching arrays or as two strings. Sets class attributes.
+	public function setUserAttributes($attr, $value) {
+		if (is_string($attr) && is_string($value)) { //if the method is passed individual attribute/value as string
+			$this->$attr = $value;
+		} elseif (is_array($attr) && is_array($value) && count($attr) == count($value) { //if method is passed two matching arrays
+			foreach ($attr as $i => $x) {
+				$this->$x = $value[$i];
+			}
+		} else {
+			error_log("Error: arguments for setUserAttributes must be two strings or two matching arrays.")
 		}
 	}
 }
